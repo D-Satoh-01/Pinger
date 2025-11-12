@@ -1,20 +1,16 @@
 #---[ レイキャスト開始処理群 ]---#
 
 
-# 現在のジャンプ中に再度ジャンプ検知されないよう sneaking_jump_flag をリセット
-scoreboard players set @s Pinger_sneaking_jump_flag 0
-
-# start_air_sneak_flag と end_air_sneak_flag をリセット
-scoreboard players set @s Pinger_start_air_sneak_flag 0
-scoreboard players set @s Pinger_end_air_sneak_flag 0
+# FLAG_air_sneakingをリセット
+scoreboard players set @s PINGER_FLAG_air_sneaking 0
 
 # レイキャスト用セットアップ
-tag @s add Pinger_raycaster
-scoreboard players set #detected_flag Pinger_raycast_temp 0
-scoreboard players set #raycast_count Pinger_raycast_temp 0
+tag @s add PINGER_raycaster
+scoreboard players set @s PINGER_FLAG_raycast_detection 0
+scoreboard players set @s PINGER_raycast_count 0
 
-# レイキャスト実行（レイキャスト完了までループ実行される）
-execute if score #detected_flag Pinger_raycast_temp matches 0 if score #raycast_count Pinger_raycast_temp matches ..1000 as @s at @s anchored eyes positioned ^ ^ ^ anchored feet run function pinger:raycast/raycaster
+# レイキャスト実行（検知もしくは指定回数に達するまでループ実行される）
+execute if score @s PINGER_FLAG_raycast_detection matches 0 if score @s PINGER_raycast_count matches ..1000 as @s at @s anchored eyes positioned ^ ^ ^ anchored feet run function pinger:raycast/raycaster
 
-# レイキャスト終了後にプレイヤーからPinger_raycasterタグを削除
-tag @s remove Pinger_raycaster
+# レイキャスト終了後にプレイヤーからPINGER_raycasterタグを削除
+tag @s remove PINGER_raycaster

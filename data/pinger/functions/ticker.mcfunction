@@ -2,13 +2,13 @@
 
 
 # ジャンプ検知
-execute as @a if score @s Pinger_current_jump_count > @s Pinger_last_jump_count run function pinger:jump_manager
+execute as @a if score @s PINGER_current_jump_count > @s PINGER_last_jump_count run function pinger:jump_detector
 
-# 着地したら sneaking_jump_flag をリセット
-execute as @a if entity @s[scores={Pinger_sneaking_jump_flag=1},nbt={OnGround:1b}] run scoreboard players set @s Pinger_sneaking_jump_flag 0
+# 着地時にFLAG_any_jumpingをリセット
+execute as @a if entity @s[nbt={OnGround:1b},scores={PINGER_FLAG_any_jumping=1}] run scoreboard players set @s PINGER_FLAG_any_jumping 0
 
-# ピン発動トリガー判定
-execute as @a if score @s Pinger_sneaking_jump_flag matches 1 as @s run function pinger:trigger_condition_checker
+# 滞空中は常にmidair_manager実行
+execute as @a if score @s PINGER_FLAG_any_jumping matches 1 as @s run function pinger:midair_manager
 
-# ワールド内にピンが1つ以上あるとき、ピン寿命管理処理を実行
-execute if entity @e[tag=Pinger_ping] run function pinger:ping_manager
+# ワールド内にピンが１つ以上あるならping_manager実行
+execute if entity @e[tag=PINGER_ping] run function pinger:ping_manager
