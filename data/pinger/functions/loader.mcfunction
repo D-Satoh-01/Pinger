@@ -10,6 +10,7 @@ scoreboard objectives add PINGER_last_jump_count dummy
 scoreboard objectives add PINGER_FLAG_any_jumping dummy
 scoreboard objectives add PINGER_FLAG_normal_jumping dummy
 scoreboard objectives add PINGER_FLAG_sneak_jumping dummy
+scoreboard objectives add PINGER_FLAG_air_standing dummy
 scoreboard objectives add PINGER_FLAG_air_sneaking dummy
 scoreboard objectives add PINGER_FLAG_raycast_detection dummy
 scoreboard objectives add PINGER_raycast_count dummy
@@ -26,6 +27,7 @@ scoreboard players add @a PINGER_last_jump_count 0
 scoreboard players add @a PINGER_FLAG_any_jumping 0
 scoreboard players add @a PINGER_FLAG_normal_jumping 0
 scoreboard players add @a PINGER_FLAG_sneak_jumping 0
+scoreboard players add @a PINGER_FLAG_air_standing 0
 scoreboard players add @a PINGER_FLAG_air_sneaking 0
 scoreboard players add @a PINGER_FLAG_raycast_detection 0
 scoreboard players add @a PINGER_raycast_count 0
